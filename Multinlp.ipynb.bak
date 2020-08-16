@@ -1,0 +1,272 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/",
+     "height": 121
+    },
+    "colab_type": "code",
+    "id": "d1FycYATv-_Q",
+    "outputId": "6b845b2e-d7e5-4e46-c96e-834f57244aec"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Go to this URL in a browser: https://accounts.google.com/o/oauth2/auth?client_id=947318989803-6bn6qk8qdgf4n4g3pfee6491hc0brc4i.apps.googleusercontent.com&redirect_uri=urn%3aietf%3awg%3aoauth%3a2.0%3aoob&response_type=code&scope=email%20https%3a%2f%2fwww.googleapis.com%2fauth%2fdocs.test%20https%3a%2f%2fwww.googleapis.com%2fauth%2fdrive%20https%3a%2f%2fwww.googleapis.com%2fauth%2fdrive.photos.readonly%20https%3a%2f%2fwww.googleapis.com%2fauth%2fpeopleapi.readonly\n",
+      "\n",
+      "Enter your authorization code:\n",
+      "··········\n",
+      "Mounted at /content/drive\n"
+     ]
+    }
+   ],
+   "source": [
+    "from google.colab import drive\n",
+    "drive.mount('/content/drive')\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/",
+     "height": 134
+    },
+    "colab_type": "code",
+    "id": "drWoQqqOjarp",
+    "outputId": "ada1d830-4970-4491-c7ca-03ebaaf11ded"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Cloning into 'cmu-multinlp'...\n",
+      "remote: Enumerating objects: 146, done.\u001b[K\n",
+      "remote: Counting objects: 100% (146/146), done.\u001b[K\n",
+      "remote: Compressing objects: 100% (104/104), done.\u001b[K\n",
+      "remote: Total 146 (delta 31), reused 133 (delta 24), pack-reused 0\u001b[K\n",
+      "Receiving objects: 100% (146/146), 461.73 KiB | 13.58 MiB/s, done.\n",
+      "Resolving deltas: 100% (31/31), done.\n"
+     ]
+    }
+   ],
+   "source": [
+    "!git clone https://github.com/neulab/cmu-multinlp.git"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "3n6zwCXfy6jg"
+   },
+   "outputs": [],
+   "source": [
+    "!chmod 755 '/content/drive/My Drive/OffNote/cmumultinlp/cmu-multinlp/setup.sh'"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "b86IbH06zxkk"
+   },
+   "outputs": [],
+   "source": [
+    "!chmod 755 '/content/cmu-multinlp/run_by_config_bert.sh'"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/",
+     "height": 235
+    },
+    "colab_type": "code",
+    "id": "CtL6YMDBvgim",
+    "outputId": "0d0b9cd4-b163-46a1-f645-cccecf8daa74"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "['',\n",
+       " '/env/python',\n",
+       " '/usr/lib/python36.zip',\n",
+       " '/usr/lib/python3.6',\n",
+       " '/usr/lib/python3.6/lib-dynload',\n",
+       " '/usr/local/lib/python3.6/dist-packages',\n",
+       " '/usr/lib/python3/dist-packages',\n",
+       " '/usr/local/lib/python3.6/dist-packages/IPython/extensions',\n",
+       " '/root/.ipython',\n",
+       " '/content/cmu-multinlp/',\n",
+       " '/content/cmu-multinlp/brat_multitask/models/brat_multitask.py',\n",
+       " '/content/cmu-multinlp/brat_multitask/',\n",
+       " '/content/cmu-multinlp']"
+      ]
+     },
+     "execution_count": 48,
+     "metadata": {
+      "tags": []
+     },
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sys.path"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "v8gu9fykvN6_"
+   },
+   "outputs": [],
+   "source": [
+    "import cmumultinlp.brat_multitask\n",
+    "sys.path.append('./content/cmu-multinlp/brat_multitask')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/",
+     "height": 34
+    },
+    "colab_type": "code",
+    "id": "TlYoxmZL3msM",
+    "outputId": "ab7aadc1-6894-4f59-b696-aefeec54e0e0"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "success\n"
+     ]
+    }
+   ],
+   "source": [
+    "import _jsonnet\n",
+    "print('success')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "yUZTe6HI5E6M"
+   },
+   "outputs": [],
+   "source": [
+    "sys.path.append('./brat_multitask')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/",
+     "height": 373
+    },
+    "colab_type": "code",
+    "id": "eMeG5aaTz2_O",
+    "outputId": "740389a5-4dec-4319-c5e6-9b5bff2c6fd1"
+   },
+   "outputs": [],
+   "source": [
+    "!run_by_config_bert.sh rc bert-base-uncased output"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Collecting scikit-learn==0.22\n",
+      "  Downloading scikit_learn-0.22-cp38-cp38-win_amd64.whl (6.3 MB)\n",
+      "Requirement already satisfied: numpy>=1.11.0 in c:\\users\\karth\\appdata\\local\\programs\\python\\python38\\lib\\site-packages (from scikit-learn==0.22) (1.18.5)\n",
+      "Requirement already satisfied: joblib>=0.11 in c:\\users\\karth\\appdata\\local\\programs\\python\\python38\\lib\\site-packages (from scikit-learn==0.22) (0.15.1)\n",
+      "Requirement already satisfied: scipy>=0.17.0 in c:\\users\\karth\\appdata\\local\\programs\\python\\python38\\lib\\site-packages (from scikit-learn==0.22) (1.4.1)\n",
+      "Installing collected packages: scikit-learn\n",
+      "  Attempting uninstall: scikit-learn\n",
+      "    Found existing installation: scikit-learn 0.23.1\n",
+      "    Uninstalling scikit-learn-0.23.1:\n",
+      "      Successfully uninstalled scikit-learn-0.23.1\n",
+      "Successfully installed scikit-learn-0.22\n"
+     ]
+    }
+   ],
+   "source": [
+    "!pip install scikit-learn==0.22"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/",
+     "height": 1000
+    },
+    "colab_type": "code",
+    "id": "Kb4OCccWx8Gm",
+    "outputId": "ac26a8cd-26a9-455e-e736-da694bdb39b1"
+   },
+   "outputs": [],
+   "source": [
+    "!setup.sh"
+   ]
+  }
+ ],
+ "metadata": {
+  "colab": {
+   "name": "Multinlp",
+   "provenance": []
+  },
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.8.3"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 1
+}
