@@ -1,0 +1,5 @@
+T1	VAR 0 1	A
+T2	VAR 3 4	B
+T3	VAR 6 7	C
+T4	ATTR 12 15	set
+T5	ATTR 12 16	sets

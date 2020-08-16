@@ -1,0 +1,1 @@
+F is an injective function from A to B.

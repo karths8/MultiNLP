@@ -1,0 +1,5 @@
+T1	VAR 0 1	X
+T2	VAR 30 31	U
+T3	VAR 36 37	V
+T4	ATTR 9 15	vector
+T5	ATTR 9 20	vectorspace

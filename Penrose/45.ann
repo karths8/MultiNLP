@@ -1,0 +1,5 @@
+T1	VAR 0 1	K
+T2	ATTR 13 18	angle
+T3	ATTR 23 28	angle
+T4	ATTR 20 28	triangle
+T5	OPER 7 19	right angled

@@ -1,0 +1,5 @@
+T1	VAR 0 1	H
+T2	VAR 31 32	C
+T3	VAR 36 37	D
+T4	ATTR 17 25	function
+T5	OPER 7 16	bijective

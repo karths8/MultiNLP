@@ -1,0 +1,4 @@
+T1	VAR 0 1	W
+T2	VAR 24 25	U
+T3	VAR 30 31	V
+T4	OPER 9 20	dot product

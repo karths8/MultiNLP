@@ -1,0 +1,5 @@
+T1	VAR 0 1	W
+T2	VAR 2 3	U
+T3	VAR 4 5	V
+T4	OPER 3 4	+
+T5	OPER 1 2	=

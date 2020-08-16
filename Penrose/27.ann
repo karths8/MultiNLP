@@ -1,0 +1,5 @@
+T1	VAR 0 1	T
+T2	VAR 2 3	U
+T3	VAR 4 5	V
+T4	ATTR 10 15	angle
+T5	ATTR 10 16	angles

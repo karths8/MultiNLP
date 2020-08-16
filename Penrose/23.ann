@@ -1,0 +1,6 @@
+T1	VAR 0 1	P
+T2	VAR 2 3	Q
+T3	VAR 4 5	R
+T4	VAR 6 7	S
+T5	ATTR 12 17	point
+T6	ATTR 12 18	points

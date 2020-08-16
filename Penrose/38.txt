@@ -1,0 +1,1 @@
+G is a surjective function from C to D.
