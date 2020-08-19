@@ -1,0 +1,8 @@
+T1	VAR 0 1	G
+T2	VAR 32 33	B
+T3	VAR 37 38	C
+T4	ATTR 18 26	function
+T5	OPER 7 17	surjective
+R1	FUNC Arg1:T4 Arg2:T1
+R2	FUNC Arg1:T4 Arg2:T2
+R3	FUNC Arg1:T4 Arg2:T3

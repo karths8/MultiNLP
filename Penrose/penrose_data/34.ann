@@ -1,0 +1,5 @@
+T1	VAR 0 1	P
+T2	VAR 6 7	Q
+T3	ATTR 12 16	sets
+R1	SET Arg1:T3 Arg2:T1
+R2	SET Arg1:T3 Arg2:T2

@@ -1,5 +1,0 @@
-T1	VAR 0 1	U
-T2	VAR 6 7	V
-T3	VAR 25 27	45
-T4	ATTR 16 21	angle
-T5	OPER 16 51	angle of 45 degrees with each other

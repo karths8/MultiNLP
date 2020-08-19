@@ -1,73 +1,94 @@
 import re
-import string
-inp = '''A is a set.
-A, B, C are sets.
-B is contained in A. 
-C is contained in B.
-C is a set.
-C is contained in A.
-P is a point.
-P is contained in A.
-P is not contained in C.
-X is a vectorspace.
-U is a vector.
-V is a vector.
-U and V belong to the vectorspace X.
-X is the vectorspace to which U and V belong.
-U and V are orthogonal vectors.
-U and V are equal vectors.
-U and V have equal lengths.
-U and V make an angle of 45 degrees with each other.
-W=U+V.
-W is equal to the sum of U and V.
-W is the dot product of U and V.
-P is a point.
-P,Q,R,S are points.
-A is a segment.
-A,B,C,D are segments.
-T is an angle.
-T,U,V are angles.
-T is a triangle.
-W is a ray.
-W is a bisector to T.
-W is a perpendicular bisector to A.
-A and B are sets.
-C and D are sets.
-P and Q are sets.
-F is a function.
-F,G,H are functions.
-F is an injective function from A to B.
-G is a surjective function from C to D.
-H is a bijective function from P to Q.
-F is an injective function from A to B.
-G is a surjective function from B to C.
-H is a bijective function from C to D.
-S is a square.
-R is a rectangle.
-K is a right angled triangle.
-K is a triangle with angles 60,40,80.'''
-strs = inp.split('\n')
-ent_keys=['set','sets','vector','vectorspace','point','points','segment','segments','angle','angles'
-,'triangle','ray','function','functions','square','rectangle']
-oper = ['dot product','sum','+','=','equal','orthogonal','right angled','angle of 45 degrees with each other','injective','bijective','surjective']
+with open('train.txt','r',encoding = 'utf-8') as k:
+  full_text=k.read()	
+strs = full_text.split('\n')
+ent_keys=['set','vector','vectorspace','point','segment','angle','triangle','ray','function','square','rectangle']
+oper = ['dot product','sum','+','=','equal','orthogonal','perpendicular','bisector','right angled','angle of 45 degrees with each other','injective','bijective','surjective']
+rel_dict = {
+    'SET':['set'],
+    'VEC':['vector'],
+    'VECSP':['vectorspace'],
+    'PNT':['point'],
+    'SEG':['segment'],
+    'ANGL':['angle'],
+    'TRI':['triangle'],
+    'RAY':['ray'],
+    'FUNC':['function'],
+    'SQR':['square'],
+    'RECT':['rectangle'],
+    'DOT':['dot product'],
+    'SUM':['sum','+'],
+    'ASSIGN':['equal','='],
+    'ORTH':['orthogonal','perpendicular'],
+    'FNCTYPE':['injective','bijective','surjective']
+}
 
-for idx,st in enumerate(strs):
-  g= open(str(idx+1)+".txt", mode='w', encoding='utf-8')
-  g.write(st)
-  st_sub = re.sub(r"[,.;@#?!&$]+", ' ', st)
-  f = open(str(idx+1)+".ann", mode='w', encoding='utf-8')
-  t_count=1
-  for obj in re.finditer('[0-9A-Z]+',st_sub):
-    f.write('T'+str(t_count)+'\t'+'VAR'+' '+str(obj.start())+' '+str(obj.end())+'\t'+obj.group()+'\n')
-    t_count+=1
-  for ent in ent_keys:
-    for obj in re.finditer(ent,st_sub):
-      f.write('T'+str(t_count)+'\t'+'ATTR'+' '+str(obj.start())+' '+str(obj.end())+'\t'+ent+'\n')
-      t_count+=1
-  for op in oper:
-    for obj in re.finditer(re.escape(op),st_sub):
-      f.write('T'+str(t_count)+'\t'+'OPER'+' '+str(obj.start())+' '+str(obj.end())+'\t'+op+'\n')
-      t_count+=1
-f.close()
-g.close()   
+def append_attr(count,tag,obj,f):
+  f.write('T'+str(count)+'\t'+tag+' '+str(obj.start())+' '+str(obj.end())+'\t'+obj.group()+'\n')
+  count+=1
+  return count
+
+def write_entities():
+  for idx,st in enumerate(strs):
+    t_count=1
+    f = open(str(idx+1)+".ann", mode='w', encoding='utf-8')
+    with open(str(idx+1)+".txt", mode='w', encoding='utf-8') as g:
+      g.write(st)
+    for obj in re.finditer('[0-9A-Z]+',st):
+      t_count = append_attr(t_count,'VAR',obj,f)
+    for ent in ent_keys:
+      plural=False
+      for obj in re.finditer(ent+'s',st):
+        plural=True
+        t_count = append_attr(t_count,'ATTR',obj,f)
+      if plural==False:
+        for obj in re.finditer(ent,st):
+          t_count = append_attr(t_count,'ATTR',obj,f)
+    for op in oper:
+      for obj in re.finditer(re.escape(op),st):
+        t_count = append_attr(t_count,'OPER',obj,f)
+    f_count=idx+2
+  f.close()
+  return f_count
   
+def list_update(attr_list,var_list,op_list,item):
+  tag=item[1]
+  if tag=='ATTR':
+      attr_list.append(item)
+  elif tag=='VAR':
+    var_list.append(item)
+  elif tag=='OPER':
+    op_list.append(item)
+  return attr_list,var_list,op_list
+
+def append_rel(var_list,count,key,arg1,i):
+  for var in var_list:
+    with open(str(i)+".ann",'a',encoding = 'utf-8') as g:
+      g.write('R'+str(count)+'\t'+key+' Arg1:'+arg1+' Arg2:'+var[0]+'\n')
+      count+=1
+
+def write_rels(f_count):
+  for i in range(1,f_count):
+    str_list,attr_list,var_list,op_list = ([] for _ in range(4))
+    rel_count=1
+    with open(str(i)+".ann",'r',encoding = 'utf-8') as f:
+      text = f.read()
+    strs = text.split('\n')
+    for st in strs:
+      str_list.append(st.replace('\t',' ').split(' '))
+    for item in str_list:
+      if item[0]!='':
+        attr_list,var_list,op_list = list_update(attr_list,var_list,op_list,item)
+    for attr in attr_list:
+      for key in rel_dict:
+        if attr[-1][:-1] in rel_dict[key]:
+          append_rel(var_list,rel_count,key,attr[0],i)
+        elif attr[-1] in rel_dict[key] :
+          append_rel(var_list,rel_count,key,attr[0],i)
+
+def main():
+  count = write_entities()
+  write_rels(count)
+
+if __name__=='__main__':
+  main()

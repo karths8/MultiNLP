@@ -1,14 +1,12 @@
 A is a set.
-A, B, C are sets. 
+A, B, C are sets.
 B is contained in A. 
 C is contained in B.
-
 C is a set.
 C is contained in A.
 P is a point.
 P is contained in A.
 P is not contained in C.
-
 X is a vectorspace.
 U is a vector.
 V is a vector.
@@ -19,7 +17,8 @@ U and V are equal vectors.
 U and V have equal lengths.
 U and V make an angle of 45 degrees with each other.
 W=U+V.
-
+W is equal to the sum of U and V.
+W is the dot product of U and V.
 P is a point.
 P,Q,R,S are points.
 A is a segment.
@@ -28,21 +27,19 @@ T is an angle.
 T,U,V are angles.
 T is a triangle.
 W is a ray.
-W is a Bisector to T.
+W is a bisector to T.
 W is a perpendicular bisector to A.
-
 A and B are sets.
 C and D are sets.
 P and Q are sets.
+F is a function.
 F,G,H are functions.
 F is an injective function from A to B.
 G is a surjective function from C to D.
 H is a bijective function from P to Q.
-
 F is an injective function from A to B.
 G is a surjective function from B to C.
 H is a bijective function from C to D.
-
 S is a square.
 R is a rectangle.
 K is a right angled triangle.

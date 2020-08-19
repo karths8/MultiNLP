@@ -1,0 +1,3 @@
+T1	VAR 0 1	T
+T2	ATTR 8 13	angle
+R1	ANGL Arg1:T2 Arg2:T1

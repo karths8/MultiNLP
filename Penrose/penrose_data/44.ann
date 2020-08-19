@@ -1,0 +1,5 @@
+T1	VAR 0 1	R
+T2	ATTR 11 16	angle
+T3	ATTR 7 16	rectangle
+R1	ANGL Arg1:T2 Arg2:T1
+R1	RECT Arg1:T3 Arg2:T1

@@ -1,8 +1,0 @@
-T1	VAR 0 1	K
-T2	VAR 28 30	60
-T3	VAR 31 33	40
-T4	VAR 34 36	80
-T5	ATTR 10 15	angle
-T6	ATTR 21 26	angle
-T7	ATTR 21 27	angles
-T8	ATTR 7 15	triangle
